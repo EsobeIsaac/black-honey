@@ -10,7 +10,7 @@ import {signIn, signOut, useSession, getProviders} from 'next-auth/react'
 import theme from './theme';
 
 function Nav() {
-    const [screenWidth, setScreenWidth] = useState(thisglobalThis?.window?.innerWidth);
+    const [screenWidth, setScreenWidth] = useState(globalThis?.window?.innerWidth);
 
     const [provider, setProvider] = useState(null)
     
@@ -31,7 +31,7 @@ function Nav() {
         });
 
         return () => {
-            globalThis?.window?.removeEventListener('resize', window);
+            globalThis?.window?.removeEventListener('resize', globalThis?.window);
         }
     }, [])
 
