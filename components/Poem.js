@@ -19,7 +19,7 @@ function Poem({poem}) {
                 <Typography variant='h4' component={'h1'} mb={2}>{poem.title}</Typography>
                 <Typography variant='body1' component={'h1'} sx={{whiteSpace: 'pre-wrap'}}>{poem.body}</Typography>
                 <Box my={2}>
-                    <Typography variant='body1'>{poem.tags.map((tag, index)=><strong key={index}>{`#${tag}`}</strong>)}</Typography>
+                    <Typography variant='body1'>{poem.tags.map((tag, index)=><strong key={index}>{`#${tag} `}</strong>)}</Typography>
                 </Box>
             </Box>
             

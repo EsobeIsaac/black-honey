@@ -15,7 +15,7 @@ export const POST = async(req) => {
         // const bytes = await image.arrayBuffer();
         // const buffer = Buffer.from(bytes);
         
-        let fileUrl = queryObj.image ? await uploadFile(image) : process.env.NEXT_PUBLIC_DEFAULT_IMAGE;
+        let fileUrl = await uploadFile(image);
 
 
         const poem = await Poem.create({title: queryObj.title, body: queryObj.body, category: queryObj.category, tags: queryObj.tags.split(','), image: fileUrl});

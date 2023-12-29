@@ -20,9 +20,9 @@ function RecentPoems({data, title}) {
                         data.poems && data.poems[0] ? data.poems.map((item, index)=>{
                             return <Grid item key={index} xs={6} sm={6} md={4} lg={4} xl={3}>
                                 <Link href={`/poems/${item._id}`}>
-                                    <ImageListItem key={index} className={classes.imageWrapper}>
-                                        <Box width={'100%'} minHeight={'270px'}>
-                                            <Image src={item.image} alt="image" fill/>
+                                    <ImageListItem key={index}  className={classes.imageWrapper}>
+                                        <Box width={'100%'} position={'relative'} minHeight={'270px'}>
+                                            <Image src={item.image} sizes="100%" alt="image" fill/>
                                         </Box>
                                         <ImageListItemBar title={item.title}/>
                                     </ImageListItem>

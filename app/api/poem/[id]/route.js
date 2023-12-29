@@ -4,11 +4,9 @@ import uploadFile from "@utils/driveUpload";
 
 
 export const GET = async(req, {params}) => {
-    console.log(params)
     try{
         await connectDB();
         let poem = await Poem.findById(params.id);
-        console.log(poem)
         return new Response(JSON.stringify(poem), {status: 200, statusText: 'success'});
     } catch(err) {
         return new Response(err, {status: 400, statusText: 'error'});
@@ -23,12 +21,18 @@ export const PATCH = async(req, {params}) => {
 
         const queryObj = Object.fromEntries(new URLSearchParams(data));
 
-        console.log(queryObj)
         
-        let fileUrl = queryObj.image && typeof queryObj.image === Object && await uploadFile(image);
+        let fileUrl;
+        if(queryObj.image && typeof queryObj.image === Object) {
+            fileUrl = await uploadFile(image);
+        }
+        
+        if(queryObj.image && typeof queryObj.image === String) {
+            fileUrl = queryObj.image
+        }
 
 
-        let poem = await Poem.findByIdAndUpdate(params.id, {title: queryObj.title, body: queryObj.body, category: queryObj.category, tags: queryObj.tags.split(','), image: fileUrl && `https://drive.google.com/uc?export=view&id=${fileUrl}`});
+        let poem = await Poem.findByIdAndUpdate(params.id, {title: queryObj.title, body: queryObj.body, category: queryObj.category, tags: queryObj.tags.split(','), image: fileUrl});
         
         return new Response(JSON.stringify(poem), {status: 200, statusText: 'success', message: 'poem updated successfully'});
     } catch(err) {

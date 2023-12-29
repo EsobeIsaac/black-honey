@@ -54,7 +54,7 @@ function Footer() {
                     <Divider/>
                     <Box pt={1}>
                     <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
-                    <Typography color={'#fff'}>Designed By Esobe</Typography>
+                    <Typography color={'#fff'}>Designed By <Link passHref={true}  href='https://ng.linkedin.com/in/esobe-isaac-8864a4193' style={{color: '#c5832b'}} target='_blank'>Esobe</Link></Typography>
                     <Breadcrumbs separator='|' sx={{color: '#fff'}}>
                         <Link href={'/'}>
                             <Button sx={{color: '#fff'}} variant='text' size='small'>
