@@ -1,0 +1,13 @@
+.imageContainer{    
+    /* background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+    height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+}
+
+/* https://unsplash.com/photos/woman-with-dslr-camera-e616t35Vbeg */

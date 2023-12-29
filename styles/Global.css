@@ -1,0 +1,45 @@
+.slick-banner, .slick-poem{
+    position: relative;
+}
+
+.slick-banner .slick-prev, .slick-parent .slick-next{
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+}
+
+.slick-banner .slick-prev{
+    left: 3% !important;
+}
+
+.slick-banner .slick-next{
+    right: 3% !important;
+}
+
+.slick-banner .slick-prev:before, .slick-banner .slick-next:before > *{
+    background-color: #000;
+    color: #000;
+    z-index: 1;
+}
+
+.slick-poem .slick-prev, .slick-poem .slick-next{
+    position: absolute;
+    top: calc(100% + 40px);
+    /* display: "block"; */
+    background-color: #000;
+    border-radius: 100px;
+    z-index: 1;
+}
+
+.slick-poem .slick-prev{
+    left: calc(0%) !important;
+}
+
+.slick-poem .slick-next{
+    left: calc(0% + 30px) !important;
+}
+
+.slick-poem .slick-dots{
+    top: calc(100% + 25px);
+    text-align: left;
+}
