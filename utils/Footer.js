@@ -32,15 +32,21 @@ function Footer() {
                     <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
                     <Image src={logo} width={200} height={'auto'} alt='logo'/>
                     <Stack direction={'row'}>
-                        <IconButton color='secondary' href='https://facebook.com/esobe.isaac.56/' target='_blank'>
-                            <FacebookRounded/>
-                        </IconButton>
-                        <IconButton color='secondary' href='https://www.instagram.com/isaacesobe/' target='_blank'>
-                            <Instagram/>
-                        </IconButton>
-                        <IconButton  color='secondary' href='https://twitter.com/esobeisaac' target='_blank'>
-                            <Twitter/>
-                        </IconButton>
+                        <Link passHref={true} href='https://facebook.com/esobe.isaac.56/' target='_blank'>
+                            <IconButton color='secondary'>
+                                <FacebookRounded/>
+                            </IconButton>
+                        </Link>
+                        <Link passHref={true} href='https://www.instagram.com/isaacesobe/' target='_blank'>
+                            <IconButton color='secondary' >
+                                <Instagram/>
+                            </IconButton>
+                        </Link>
+                        <Link passHref={true}  href='https://twitter.com/esobeisaac' target='_blank'>
+                            <IconButton color='secondary'>
+                                <Twitter/>
+                            </IconButton>
+                        </Link>
                     </Stack>
                         
                     </Stack>
@@ -50,13 +56,13 @@ function Footer() {
                     <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
                     <Typography color={'#fff'}>Designed By Esobe</Typography>
                     <Breadcrumbs separator='|' sx={{color: '#fff'}}>
-                        <Link href={'#'}>
-                            <Button sx={{color: '#fff'}}>
+                        <Link href={'/'}>
+                            <Button sx={{color: '#fff'}} variant='text' size='small'>
                                 Home
                             </Button>
                         </Link>
-                        <Link href={'#'} variant='text' size='small'>
-                            <Button sx={{color: '#fff'}}>
+                        <Link href={'/poems'}>
+                            <Button sx={{color: '#fff'}} variant='text' size='small'>
                                 Poems
                             </Button>
                         </Link>

@@ -88,7 +88,7 @@ function Nav() {
                     }
                         
                     {
-                        screenWidth <= 600 && <IconButton onClick={()=>setDrawerMenu((prevState)=>!prevState)}>
+                        (screenWidth <= 600) && <IconButton onClick={()=>setDrawerMenu((prevState)=>!prevState)}>
                         {drawerMenu ? <Close/> : <Menu/>}
                     </IconButton> 
                     }

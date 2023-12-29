@@ -79,7 +79,9 @@ function PoemSlides({data, title}) {
                 </Slider>
               )
             }
-            <Button color="secondary" sx={{position: 'relative', top: '20px', right: 'calc(-100% + 100px)'}}>See More</Button>
+            <Link href='/poems'>
+              <Button color="secondary" sx={{position: 'relative', top: '20px', right: 'calc(-100% + 100px)'}}>See More</Button>
+            </Link>
             </Container>
       {/* </ImageList> */}
         </Box>

@@ -6,7 +6,8 @@ export async function generateMetadata({params}) {
   const {data} = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/poem/${params.id}`);
   return {
     title: data.title,
-    discription: data.body.slice(0, 30)
+    discription: data.body.slice(0, 30),
+    openGraph: data.image
   }
 }
 

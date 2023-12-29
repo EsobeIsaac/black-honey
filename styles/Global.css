@@ -30,6 +30,9 @@
     border-radius: 100px;
     z-index: 1;
 }
+a:link{
+    text-decoration: none;
+}
 
 .slick-poem .slick-prev{
     left: calc(0%) !important;

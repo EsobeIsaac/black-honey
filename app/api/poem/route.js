@@ -12,13 +12,14 @@ export const POST = async(req) => {
         const queryObj = Object.fromEntries(new URLSearchParams(data));
 
         const image = data.get('image');
+        console.log(image, queryObj.image)
         // const bytes = await image.arrayBuffer();
         // const buffer = Buffer.from(bytes);
         
-        let fileUrl = await uploadFile(image);
+        let fileUrl = queryObj.image ? `https://drive.google.com/uc?export=view&id=${await uploadFile(image)}` : process.env.NEXT_PUBLIC_DEFAULT_IMAGE;
 
 
-        const poem = await Poem.create({title: queryObj.title, body: queryObj.body, category: queryObj.category, tags: queryObj.tags.split(','), image: fileUrl ? `https://drive.google.com/uc?export=view&id=${fileUrl}` : process.env.NEXT_PUBLIC_DEFAULT_IMAGE});
+        const poem = await Poem.create({title: queryObj.title, body: queryObj.body, category: queryObj.category, tags: queryObj.tags.split(','), image: fileUrl});
 
         return new Response(poem, {status: 201, statusText: 'success'});
     } catch(err) {

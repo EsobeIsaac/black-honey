@@ -12,13 +12,9 @@ function Poem({poem}) {
     const sharePrompt = () => {
         if(navigator.share) {
             navigator.share({
-                title: document.title,
                 url: window.location.href,
-                text: 'Check out this wonderful poem'
             })
-        } else{
-            console.log('here')
-        }
+        } 
     }
 
   return (
