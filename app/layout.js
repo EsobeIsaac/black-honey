@@ -22,7 +22,7 @@ function Layout({ children, session }) {
             <main style={{paddingTop: '8vh'}}>
                 {children}
             </main>
-            {/* <Footer/> */}
+            <Footer/>
         </AppRouterCacheProvider>
           </Provider>
       </body>
