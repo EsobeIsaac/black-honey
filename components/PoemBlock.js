@@ -22,7 +22,7 @@ function RecentPoems({data, title}) {
                                 <Link href={`/poems/${item._id}`}>
                                     <ImageListItem key={index}  className={classes.imageWrapper}>
                                         <Box width={'100%'} position={'relative'} minHeight={'270px'}>
-                                            <Image src={item.image} sizes="100%" alt="image" fill/>
+                                            <Image src={item.image} sizes="(max-width: 480px) 100vw, (max-width: 600px) 50vw, (max-width: 1200px) 40vw, 33vw" alt="image" fill/>
                                         </Box>
                                         <ImageListItemBar title={item.title}/>
                                     </ImageListItem>
