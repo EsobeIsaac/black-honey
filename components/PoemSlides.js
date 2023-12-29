@@ -74,7 +74,7 @@ function PoemSlides({data, title}) {
                         </CardActions>
                       </Card>  
                     </Box>
-                    }) : null
+                    }) : <Typography variant="h6">No Item in this category</Typography>
                   }             
                 </Slider>
               )

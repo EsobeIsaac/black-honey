@@ -1,4 +1,4 @@
-import { Box, Container, Grid, ImageList, ImageListItem, ImageListItemBar, Stack, Typography } from "@mui/material";
+import { Box, Container, Grid, Card, CardActions, CardContent, CardMedia, Typography, Button } from "@mui/material";
 import Image from "next/image";
 import classes from '@styles/RecentPoems.module.css'
 import Link from "next/link";
@@ -19,16 +19,19 @@ function RecentPoems({data, title}) {
                     {
                         data.poems && data.poems[0] ? data.poems.map((item, index)=>{
                             return <Grid item key={index} xs={6} sm={6} md={4} lg={4} xl={3}>
-                                <Link href={`/poems/${item._id}`}>
-                                    <ImageListItem key={index}  className={classes.imageWrapper}>
-                                        <Box width={'100%'} position={'relative'} minHeight={'270px'}>
-                                            <Image src={item.image} sizes="(max-width: 480px) 100vw, (max-width: 600px) 50vw, (max-width: 1200px) 40vw, 33vw" alt="image" fill/>
-                                        </Box>
-                                        <ImageListItemBar title={item.title}/>
-                                    </ImageListItem>
-                                </Link>
+                                <Card sx={{margin: '0px 5px'}}>
+                                    <CardMedia component='img' sx={{height: 250}} alt='image' image={item.image}/>
+                                    <CardContent>
+                                        <Typography variant='subtitle1'>{item.title}</Typography>
+                                    </CardContent>
+                                    <CardActions >
+                                    <Link href={`/poems/${item._id}`} style={{width: '100%'}}>
+                                        <Button variant='contained' color={'primary'} size='small' fullWidth>Read</Button>
+                                    </Link>
+                                    </CardActions>
+                                </Card>
                             </Grid>
-                        }) : null
+                        }) : <Typography variant="h6">No Item in this category</Typography>
                     }
                 </Grid>
             }
