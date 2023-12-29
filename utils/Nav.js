@@ -26,7 +26,6 @@ function Nav() {
     
     useEffect(()=>{
         globalThis?.window?.addEventListener('resize', () => {
-            console.log(globalThis?.window?.innerWidth)
             setScreenWidth(globalThis?.window?.innerWidth)
         });
 
