@@ -121,7 +121,7 @@ function PostEdit({poemObj}) {
                     <Typography variant="h4" gutterBottom>Post a Poem</Typography>
                 </Box>
                 <Stack  width={'100%'} spacing={2}>
-                    <Box className={classes.imageContainer} style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${image ? typeof image === Object ? URL.createObjectURL(image) : image : defaultImg})`}}>
+                    <Box className={classes.imageContainer} style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${image ? typeof image == 'object' ? URL.createObjectURL(image) : image : defaultImg})`}}>
                         <IconButton sx={{ color: '#fff', border: '2px solid #fff', backgroundColor: 'primary'}} onClick={()=>{
                             document.getElementById('image').click()
                         }}>
