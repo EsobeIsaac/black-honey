@@ -21,12 +21,23 @@ function PostEdit({poemObj}) {
     
     const [image, setImage] = useState(poemObj?.image ? poemObj.image : null)
     const [poem, setPoem] = useState({
-        title: poemObj ? poemObj.image : null,
-        body: poemObj ? poemObj.image : null,
-        category: poemObj ? poemObj.image : null,
-        tags: poemObj ? poemObj.image : []
+        title: null,
+        body: null,
+        category: null,
+        tags: []
     })
 
+    useEffect(()=>{
+        if(poemObj) {
+            setPoem({
+                title: poemObj.title,
+                body: poemObj.body,
+                category: poemObj.category,
+                tags: poemObj.tags
+            })
+            setImage(poemObj.image)
+        }
+    }, [poemObj])
 
     const categories = JSON.parse(process.env.NEXT_PUBLIC_CATEGORIES);
 
