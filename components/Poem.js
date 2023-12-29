@@ -13,7 +13,7 @@ function Poem({poem}) {
     <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
         <Container className={classes.poem}>
             <Box style={{height: '300px', width: '100%', position: 'relative'}}>
-                <Image src={poem.image} fill alt='hello'/>
+                <Image src={poem.image} fill priority sizes='(max-width: 768px) 100vw, 300px' alt='hello'/>
             </Box>
             <Box my={4} textAlign={'center'}>
                 <Typography variant='h4' component={'h1'} mb={2}>{poem.title}</Typography>
