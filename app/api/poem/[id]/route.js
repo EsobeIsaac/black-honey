@@ -23,11 +23,11 @@ export const PATCH = async(req, {params}) => {
 
         
         let fileUrl;
-        if(queryObj.image && typeof queryObj.image === Object) {
+        if(queryObj.image && typeof queryObj.image === 'object') {
             fileUrl = await uploadFile(image);
         }
         
-        if(queryObj.image && typeof queryObj.image === String) {
+        if(queryObj.image && typeof queryObj.image === 'string') {
             fileUrl = queryObj.image
         }
 
