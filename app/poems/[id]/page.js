@@ -9,14 +9,26 @@ export async function generateMetadata({params}) {
     title: data.title,
     discription: data.body.slice(0, 30),
     openGraph: {
-      images: [data.image],
+      images: [
+        {
+          url: data.image,
+          width: 600,
+          height: 600,
+        },
+      ],
       title: data.title,
       discription: data.body.slice(0, 30),
     },
     twitter: {
       card: 'summary_large_image',
       site: '@esobeisaac',
-      images: [data.image],
+      images: [
+        {
+          url: data.image,
+          width: 600,
+          height: 600,
+        },
+      ],
       title: data.title,
       discription: data.body.slice(0, 30),
     }
