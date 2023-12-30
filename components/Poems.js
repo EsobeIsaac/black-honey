@@ -16,7 +16,7 @@ function Poems({poems, deleteFunc}) {
   return (
     <Box>
         <Container>
-            <Grid container spacing={2}>
+            <Grid container spacing={1}>
                 {
                     !poems[0] ? <Typography variant='h4'>No Result Found</Typography> : poems.map((item, index)=>{
                         return <Grid key={index} item xs={6} sm={4} md={3}>
