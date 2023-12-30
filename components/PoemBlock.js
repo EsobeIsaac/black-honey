@@ -19,7 +19,7 @@ function RecentPoems({data, title}) {
                 data.loading ? <Loading/> : <Grid container spacing={1}>
                     {
                         data.poems && data.poems[0] ? data.poems.map((item, index)=>{
-                            return <Grid item key={index} xs={6} sm={6} md={4} lg={4} xl={3}>
+                            return <Grid item key={index} xs={12} sm={6} md={4} lg={4} xl={3}>
                                 <Card sx={{margin: '0px 5px', bgcolor: 'primary'}} className={classes.box}>
                                     <CardMedia component='img' className={classes.media} sx={{height: 250}} alt='image' image={item.image}/>
                                     <CardContent bgcolor='#0d1321'>
