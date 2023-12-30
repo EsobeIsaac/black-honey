@@ -23,12 +23,12 @@ export const PATCH = async(req, {params}) => {
 
         
         let fileUrl;
-        if(queryObj.image && typeof queryObj.image === 'object') {
-            fileUrl = await uploadFile(image);
+        if(queryObj?.image?.includes('https://drive.google.com')) {
+            fileUrl = queryObj.image
         }
         
-        if(queryObj.image && typeof queryObj.image === 'string') {
-            fileUrl = queryObj.image
+        if(!queryObj?.image?.includes('https://drive.google.com')) {
+            fileUrl = await uploadFile(image);
         }
 
 
