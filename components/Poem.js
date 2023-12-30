@@ -5,6 +5,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import SharePoem from './SharePoem';
 import classes from '@styles/Poemi.module.css'
+import CardMedia from '@mui/material/CardMedia';
 
 function Poem({poem}) {
 
@@ -12,8 +13,8 @@ function Poem({poem}) {
   return (
     <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
         <Container className={classes.poem}>
-            <Box style={{height: '300px', width: '100%', position: 'relative'}}>
-                <Image src={poem.image} fill priority sizes='(max-width: 768px) 100vw, 300px' alt='hello'/>
+            <Box style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${poem.image})`}} className={classes.poemImgBox}>
+                
             </Box>
             <Box my={4} textAlign={'center'}>
                 <Typography variant='h4' component={'h1'} mb={2}>{poem.title}</Typography>
