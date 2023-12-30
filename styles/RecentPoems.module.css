@@ -1,12 +1,19 @@
-.imageList{
-    width: 100%;
+.box{
+    position: relative;
+}
+.action{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
 }
 
-.imageWrapper{
-    width: 100%;
+.media{
+    opacity: 0.8;
 }
 
-.images{
-    width: 100%;
-    height: auto;
+.box:hover .media{
+    opacity: 1;
 }
