@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { Alert, ButtonGroup, IconButton, MenuItem } from "@mui/material";
-import { Camera, FormatBold, FormatItalic, FormatUnderlined } from "@mui/icons-material";
+import { Camera, FormatBold, FormatItalic, FormatUnderlined, ImportContactsOutlined } from "@mui/icons-material";
 import Image from "next/image";
 import classes from '@styles/Post.module.css'
 
@@ -41,8 +41,6 @@ function PostEdit({poemObj}) {
 
     const categories = JSON.parse(process.env.NEXT_PUBLIC_CATEGORIES);
 
-    console.log(categories)
-
     const [message, setMessage] = useState({message: null, status: null})
 
     const [reqSent, setReqSent] = useState(false)
@@ -72,15 +70,18 @@ function PostEdit({poemObj}) {
 
     const handleSubmit = async() => {
         setReqSent(true)
-        try{
-            const data = new FormData();
-            if(image) {
-                data.set('image', image);
-            }
+        try{                   
+                    
+            const data = new FormData(); 
+
+            
+            data.set('image', image)
+
             // data.append(poem);
             Object.entries(poem).forEach((item)=>{
                 data.append(item[0], item[1])
             })
+
 
             const result = poemObj ? await axios.patch(`${process.env.NEXT_PUBLIC_URL}/api/poem/${poemObj._id}`, data) : await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/poem`, data);
 
@@ -111,7 +112,6 @@ function PostEdit({poemObj}) {
         }
     }, [message])
 
-    console.log(typeof image)
 
 
   return (
@@ -121,7 +121,7 @@ function PostEdit({poemObj}) {
                     <Typography variant="h4" gutterBottom>Post a Poem</Typography>
                 </Box>
                 <Stack  width={'100%'} spacing={2}>
-                    <Box className={classes.imageContainer} style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${image ? typeof image == 'object' ? URL.createObjectURL(image) : image : defaultImg})`}}>
+                    <Box className={classes.imageContainer} style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${image ? typeof image == 'object' ? image : image : defaultImg})`}}>
                         <IconButton sx={{ color: '#fff', border: '2px solid #fff', backgroundColor: 'primary'}} onClick={()=>{
                             document.getElementById('image').click()
                         }}>
@@ -132,7 +132,23 @@ function PostEdit({poemObj}) {
                     
                     
                     <input type='file' id='image' hidden onChange={(e) => {
-                        setImage(e.target.files[0]);
+                        // Get the selected file
+                        const file = e.target.files[0];
+
+                        // Initialize a new FileReader object
+                        const reader = new FileReader();
+
+                        // Define a function to execute when the file is loaded
+                        reader.onload = function(event) {
+                            // Get the base64 encoded string
+                            const base64String = event.target.result;
+
+                            // Send the base64 string to the backend
+                            setImage(base64String);
+                        };
+
+                        // Read the file as a data URL (base64 encoded)
+                        reader.readAsDataURL(file);
                     }}/>
 
                     <Stack direction='row' spacing={2}>

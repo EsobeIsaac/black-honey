@@ -1,6 +1,7 @@
 import Poem from "@models/poems";
 import {connectDB} from '@utils/database'
-import uploadFile from "@utils/driveUpload";
+import cloudinaryUpload from '@utils/cloudinaryUpload';
+import { Readable } from 'stream';
 
 
 export const GET = async(req, {params}) => {
@@ -15,26 +16,31 @@ export const GET = async(req, {params}) => {
 
 export const PATCH = async(req, {params}) => {
     try{
-        await connectDB();
+        await connectDB()
         const data = await req.formData();
-        const image = data.get('image');
-
+        
         const queryObj = Object.fromEntries(new URLSearchParams(data));
 
-        
-        let fileUrl;
-        if(queryObj?.image?.includes('https://drive.google.com')) {
-            fileUrl = queryObj.image
-        }
-        
-        if(!queryObj?.image?.includes('https://drive.google.com')) {
-            fileUrl = await uploadFile(image);
+        // return new Response(queryObj, {status: 201, statusText: 'success'});
+
+        let imageUrl;
+
+        console.log(queryObj)
+
+        if(queryObj.image === 'null' || queryObj.image.indexOf('https') === -1) {
+            imageUrl = await cloudinaryUpload.uploader.upload(queryObj.image, {folder: 'blackHoney'}).then(async function(result) {
+                return result.url
+            })
+        } else{
+            imageUrl = queryObj.image
         }
 
+        console.log(imageUrl)
 
-        let poem = await Poem.findByIdAndUpdate(params.id, {title: queryObj.title, body: queryObj.body, category: queryObj.category, tags: queryObj.tags.split(','), image: fileUrl});
+        let poem = await Poem.findByIdAndUpdate(params.id, {title: queryObj.title, body: queryObj.body, category: queryObj.category, tags: queryObj.tags.split(','), image: imageUrl});
+
+        return new Response(JSON.stringify(poem), {status: 201, statusText: 'success'});
         
-        return new Response(JSON.stringify(poem), {status: 200, statusText: 'success', message: 'poem updated successfully'});
     } catch(err) {
         console.log(err)
         return new Response(err, {statusText: 'error'});
