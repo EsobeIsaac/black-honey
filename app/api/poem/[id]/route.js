@@ -28,7 +28,11 @@ export const PATCH = async(req, {params}) => {
         console.log(queryObj)
 
         if(queryObj.image === 'null' || queryObj.image.indexOf('https') === -1) {
-            imageUrl = await cloudinaryUpload.uploader.upload(queryObj.image, {folder: 'blackHoney'}).then(async function(result) {
+            imageUrl = await cloudinaryUpload.uploader.upload(queryObj.image, {folder: 'blackHoney'}).then(async function(result, err) {
+                if(err) {
+                    console.log(err)
+                    return new Response(err, {statusText: 'error'});
+                }
                 return result.url
             })
         } else{
