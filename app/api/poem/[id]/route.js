@@ -18,8 +18,9 @@ export const PATCH = async(req, {params}) => {
     try{
         await connectDB()
         console.log('Inner IF')
-        
+
         const data = await req.formData();
+        console.log(data, 'data')
         
         const queryObj = Object.fromEntries(new URLSearchParams(data));
 
