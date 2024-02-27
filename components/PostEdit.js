@@ -75,14 +75,6 @@ function PostEdit({poemObj}) {
         setReqSent(true)
         try{                   
 
-            console.log(image)
-            
-            // if(image) {
-                //     await setPoem(prevState=>({
-            //         ...prevState,
-            //         image: image
-            //     }))
-            // }
             
             const data = {...poem, image}
             console.log(data)

@@ -7,6 +7,9 @@ let theme = createTheme({
         },
         primary:{
           main: '#0d1321'
+        },
+        success: {
+          main: '#008000'
         }
     }
 });

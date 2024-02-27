@@ -6,9 +6,8 @@ import cloudinaryUpload from '@utils/cloudinaryUpload';
 export const POST = async(req, res) => {
     try{
         await connectDB()
-        const data = await req.formData();
-        
-        const queryObj = Object.fromEntries(new URLSearchParams(data));
+
+        let queryObj = await req.json();
 
 
         let imageUrl;
@@ -16,10 +15,15 @@ export const POST = async(req, res) => {
         
         
         if(queryObj.image !== 'null' || queryObj.image.indexOf('https') === -1) {
-            console.log(queryObj)
-            imageUrl = await cloudinaryUpload.uploader.upload(queryObj.image, {folder: 'blackHoney'}).then(async function(result) {
+
+            imageUrl = await cloudinaryUpload.uploader.upload(queryObj.image, {folder: 'blackHoney'}).then(async function(result, err) {
+                if(err) {
+                    console.log(err)
+                    return new Response(err, {statusText: 'error'});
+                }
                 return result.url
             })
+            
         } else{
             imageUrl = process.env.NEXT_PUBLIC_DEFAULT_IMAGE
         }

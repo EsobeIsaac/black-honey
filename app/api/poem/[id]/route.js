@@ -18,21 +18,8 @@ export const PATCH = async(req, {params}) => {
     try{
         await connectDB()
 
-        // let body = '';
-
-        // console.log(await req.json())
-
-
-        // for await (const chunk of await req.body) {
-        //     body += chunk;
-        // }
-
-        // console.log(body)
         let queryObj = await req.json();
 
-        console.log(queryObj);
-
-        // return new Response(queryObj, {status: 201, statusText: 'success'});
 
         let imageUrl;
 
