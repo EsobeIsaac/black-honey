@@ -21,10 +21,11 @@ export const PATCH = async(req, {params}) => {
         let body = '';
 
 
-        for await (const chunk of req) {
+        for await (const chunk of req.body) {
             body += chunk;
         }
 
+        console.log(body)
         let queryObj = JSON.parse(body);
 
         console.log(queryObj);
