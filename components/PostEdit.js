@@ -7,8 +7,11 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { Alert, ButtonGroup, IconButton, MenuItem } from "@mui/material";
-import { Camera, FormatBold, FormatItalic, FormatUnderlined, ImportContactsOutlined } from "@mui/icons-material";
+import Alert from "@mui/material/Alert";
+import IconButton from "@mui/material/IconButton";
+import MenuItem from "@mui/material/MenuItem";
+import Camera from "@mui/icons-material/Camera";
+import ContactsOutlined from "@mui/icons-material/ContactsOutlined";
 import Image from "next/image";
 import classes from '@styles/Post.module.css'
 
@@ -74,13 +77,15 @@ function PostEdit({poemObj}) {
                     
             const data = new FormData(); 
 
-            
-            data.set('image', image)
+            if(image) {
+                data.set('image', image)
+            }
 
-            // data.append(poem);
             Object.entries(poem).forEach((item)=>{
                 data.append(item[0], item[1])
             })
+
+            console.log('ready to mia')
 
 
             const result = poemObj ? await axios.patch(`${process.env.NEXT_PUBLIC_URL}/api/poem/${poemObj._id}`, data) : await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/poem`, data);
@@ -93,6 +98,7 @@ function PostEdit({poemObj}) {
                 tags: []
             });
         } catch(err) {
+            console.log(err)
             if(err.response) {
                 setMessage({message: err.response.data, status: err.response.statusText})
             }

@@ -20,19 +20,20 @@ export const PATCH = async(req, {params}) => {
         const data = await req.formData();
         
         const queryObj = Object.fromEntries(new URLSearchParams(data));
+        console.log('Reached route')
 
         // return new Response(queryObj, {status: 201, statusText: 'success'});
 
         let imageUrl;
 
-        console.log(queryObj)
-
         if(queryObj.image === 'null' || queryObj.image.indexOf('https') === -1) {
+            console.log('Inner IF')
             imageUrl = await cloudinaryUpload.uploader.upload(queryObj.image, {folder: 'blackHoney'}).then(async function(result, err) {
                 if(err) {
-                    console.log(err)
+                    console.log(err, 'error on upload')
                     return new Response(err, {statusText: 'error'});
                 }
+                console.log('Inner Cloud')
                 return result.url
             })
         } else{

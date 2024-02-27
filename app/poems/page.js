@@ -1,8 +1,20 @@
 'use client'
 import Loading from "@components/Loading";
 import Poems from "@components/Poems";
-import { ArrowBack, ArrowForward, Search } from "@mui/icons-material";
-import { Box, Button, Container, Grid, IconButton, MenuItem, Stack, TextField, ThemeProvider, Typography } from "@mui/material";
+import ArrowBack from "@mui/icons-material/ArrowBack";
+import ArrowForward from "@mui/icons-material/ArrowForward";
+import Search from "@mui/icons-material/Search";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import IconButton from "@mui/material/IconButton";
+import MenuItem from "@mui/material/MenuItem";
+import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
+import ThemeProvider from "@mui/material/ThemeProvider";
+import Typography from "@mui/material/Typography";
+// import { Box, Button, Container, Grid, IconButton, MenuItem, Stack, TextField, ThemeProvider, Typography } from "@mui/material";
 import theme from "@utils/theme";
 import axios from "axios";
 import { useEffect, useState } from "react";
