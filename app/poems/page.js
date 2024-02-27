@@ -22,7 +22,7 @@ import { useEffect, useState } from "react";
 
 
 
-function Page() {
+function Poems() {
 
   const [poems, setPoems] = useState([]);
   const [reqSent, setReqSent] = useState([]);
@@ -137,4 +137,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default Poems;

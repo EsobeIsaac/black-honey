@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 
 
 
-function Page() {
+function Edit() {
 
   
   const router = useRouter();
@@ -63,4 +63,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default Edit;

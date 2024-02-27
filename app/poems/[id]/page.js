@@ -35,7 +35,7 @@ export async function generateMetadata({params}) {
   }
 }
 
-async function Page({params}) {
+async function Poem({params}) {
 
   const poemId = params.id;
 
@@ -57,4 +57,4 @@ async function Page({params}) {
   );
 }
 
-export default Page;
+export default Poem;

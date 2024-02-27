@@ -19,6 +19,8 @@ export const PATCH = async(req, {params}) => {
         await connectDB()
         console.log('Hack')
 
+        console.log(req, req.formData())
+
         const data = await req.formData();
         console.log(data, 'data')
         
