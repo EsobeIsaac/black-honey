@@ -21,7 +21,7 @@ export const PATCH = async(req, {params}) => {
         let body = '';
 
 
-        for await (const chunk of req.body) {
+        for await (const chunk of req) {
             body += chunk;
         }
 
