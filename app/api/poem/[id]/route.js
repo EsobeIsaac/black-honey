@@ -17,7 +17,7 @@ export const GET = async(req, {params}) => {
 export const PATCH = async(req, {params}) => {
     try{
         await connectDB()
-        console.log('Inner IF')
+        console.log('Hack')
 
         const data = await req.formData();
         console.log(data, 'data')
