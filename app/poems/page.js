@@ -12,8 +12,8 @@ import IconButton from "@mui/material/IconButton";
 import MenuItem from "@mui/material/MenuItem";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
-import ThemeProvider from "@mui/material/ThemeProvider";
 import Typography from "@mui/material/Typography";
+import {ThemeProvider} from  '@mui/material/styles'
 // import { Box, Button, Container, Grid, IconButton, MenuItem, Stack, TextField, ThemeProvider, Typography } from "@mui/material";
 import theme from "@utils/theme";
 import axios from "axios";
