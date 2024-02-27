@@ -77,15 +77,15 @@ function PostEdit({poemObj}) {
 
             console.log(image)
 
-            if(image) {
-                await setPoem(prevState=>({
-                    ...prevState,
-                    image: image
-                }))
-            }
+            // if(image) {
+            //     await setPoem(prevState=>({
+            //         ...prevState,
+            //         image: image
+            //     }))
+            // }
 
 
-            const result = poemObj ? await axios.patch(`${process.env.NEXT_PUBLIC_URL}/api/poem/${poemObj._id}`, JSON.stringify(poem), {
+            const result = poemObj ? await axios.patch(`${process.env.NEXT_PUBLIC_URL}/api/poem/${poemObj._id}`, JSON.stringify({...poem, image: image}), {
                 headers: {
                     "Content-Type": "application/json"
                 }
