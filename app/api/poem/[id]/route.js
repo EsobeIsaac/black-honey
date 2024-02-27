@@ -19,10 +19,10 @@ export const PATCH = async(req, {params}) => {
         await connectDB()
         console.log('Hack them')
 
-        const data = await req.formData();
+        const data = await req.body;
         console.log(data, 'data')
         
-        const queryObj = Object.fromEntries(new URLSearchParams(data));
+        const queryObj = data;
 
         // return new Response(queryObj, {status: 201, statusText: 'success'});
 
