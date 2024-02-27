@@ -11,6 +11,7 @@ export const connectDB = () => {
         mongoose.connect(process.env.DATABASE_URL);
         isConnected = true;
         console.log('mongo db connected')
+        return
     } catch(err) {
         console.log(err)
     }
