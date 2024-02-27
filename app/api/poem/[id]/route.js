@@ -17,18 +17,23 @@ export const GET = async(req, {params}) => {
 export const PATCH = async(req, {params}) => {
     try{
         await connectDB()
-        console.log('Hack them')
 
-        const data = await req.body;
-        console.log(data, 'data')
-        
-        const queryObj = data;
+        let body = '';
+
+
+        for await (const chunk of req.body) {
+            body += chunk;
+        }
+
+        let queryObj = JSON.parse(body);
+
+        console.log(queryObj);
 
         // return new Response(queryObj, {status: 201, statusText: 'success'});
 
         let imageUrl;
 
-        if(queryObj.image === 'null' || queryObj.image.indexOf('https') === -1) {
+        if(queryObj.image !== 'null' || queryObj.image.indexOf('https') === -1) {
             imageUrl = await cloudinaryUpload.uploader.upload(queryObj.image, {folder: 'blackHoney'}).then(async function(result, err) {
                 if(err) {
                     console.log(err)
@@ -42,7 +47,7 @@ export const PATCH = async(req, {params}) => {
 
         console.log(imageUrl)
 
-        let poem = await Poem.findByIdAndUpdate(params.id, {title: queryObj.title, body: queryObj.body, category: queryObj.category, tags: queryObj.tags.split(','), image: imageUrl});
+        let poem = await Poem.findByIdAndUpdate(params.id, {title: queryObj.title, body: queryObj.body, category: queryObj.category, tags: queryObj.tags, image: imageUrl});
 
         return new Response(JSON.stringify(poem), {status: 201, statusText: 'success'});
         

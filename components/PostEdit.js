@@ -74,23 +74,26 @@ function PostEdit({poemObj}) {
     const handleSubmit = async() => {
         setReqSent(true)
         try{                   
-                    
-            const data = new FormData(); 
+
+            console.log(image)
 
             if(image) {
-                // data.set('image', image)
-                setPoem(prevState=>({
+                await setPoem(prevState=>({
                     ...prevState,
                     image: image
                 }))
             }
 
-            // Object.entries(poem).forEach((item)=>{
-            //     data.append(item[0], item[1])
-            // })
 
-
-            const result = poemObj ? await axios.patch(`${process.env.NEXT_PUBLIC_URL}/api/poem/${poemObj._id}`, JSON.stringify(poem)) : await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/poem`, JSON.stringify(poem));
+            const result = poemObj ? await axios.patch(`${process.env.NEXT_PUBLIC_URL}/api/poem/${poemObj._id}`, JSON.stringify(poem), {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }) : await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/poem`, JSON.stringify(poem), {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
 
             setMessage({message: poemObj ? 'update was successful' : 'Poem posted successfully', status: result.statusText});
             poemObj ? result.data : setPoem({
