@@ -35,7 +35,6 @@ function PoemsPage() {
 
   const pageUpdate = (action) => {
     if(action === 'next') {
-      console.log('haga')
       return setFilter((prevState)=>({
         ...prevState,
         page: ++prevState.page
@@ -55,8 +54,20 @@ function PoemsPage() {
     const getPoems = async() => {
       setReqSent(true)
       try{
-        const result = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/poem?page=${filter.page}&${filter.title && 'title='+filter.title}&${filter.category && 'category='+filter.category}`);
-        console.log(result)
+        console.log(filter.page)
+
+        let queryString = `${process.env.NEXT_PUBLIC_URL}/api/poem?page=${filter.page}`
+
+        Object.keys(filter).forEach(key => {
+          if(filter[key] !== null && filter[key] !== filter['page']) {
+            queryString = queryString+`&${key}=${filter[key]}`
+          }
+        })
+
+        console.log(queryString)
+
+        const result = await axios.get(queryString);
+
         setPoems(result.data)
       } catch(err) {
         console.log(err)

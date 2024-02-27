@@ -25,20 +25,20 @@ const GetClass = class {
             let sortString = this.queryStr.sort.split(",").join(" ");
             this.query = this.query.sort(sortString);
         } else{
-            this.query = this.query.sort("createdAt");
+            this.query = this.query.sort("-createdAt");
         }
         return this;
     }
     paginate() {
         // console.log(this.queryStr.limit)
         const page = this.queryStr.get('page') ?  this.queryStr.get('page') * 1 : 1;
-        const limit = this.queryStr.get('limit') ? this.queryStr.get('limit') * 1 : 10;
+        const limit = this.queryStr.get('limit') ? this.queryStr.get('limit') * 1 : 12;
 
         let skip = (page - 1) * limit;
 
         this.query.skip(skip).limit(limit);
 
-        return this
+        return this;
     }
 
     fields() {

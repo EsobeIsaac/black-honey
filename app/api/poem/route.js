@@ -23,7 +23,7 @@ export const POST = async(req, res) => {
                 }
                 return result.url
             })
-            
+
         } else{
             imageUrl = process.env.NEXT_PUBLIC_DEFAULT_IMAGE
         }
@@ -41,7 +41,8 @@ export const POST = async(req, res) => {
 export const GET = async(req) => {
     try{
         await connectDB();
-        let features = new poemFilterClass(Poem.find(), req.nextUrl.searchParams).filter().sort().paginate().fields();
+        console.log(req.nextUrl.searchParams)
+        let features = new poemFilterClass(Poem.find(), req.nextUrl.searchParams).paginate().filter().sort().fields();
         const poems = await features.query;
         return new Response(JSON.stringify(poems), {status: 200, statusText: 'success'});
     } catch(err) {
