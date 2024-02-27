@@ -77,18 +77,16 @@ function PostEdit({poemObj}) {
                     
             const data = new FormData(); 
 
-            // if(image) {
-            //     data.set('image', image)
-            // }
+            if(image) {
+                data.set('image', image)
+            }
 
-            // Object.entries(poem).forEach((item)=>{
-            //     data.append(item[0], item[1])
-            // })
-
-            console.log('ready to mia')
+            Object.entries(poem).forEach((item)=>{
+                data.append(item[0], item[1])
+            })
 
 
-            const result = poemObj ? await axios.patch(`${process.env.NEXT_PUBLIC_URL}/api/poem/${poemObj._id}`, {...poem, image: image}) : await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/poem`, data);
+            const result = poemObj ? await axios.patch(`${process.env.NEXT_PUBLIC_URL}/api/poem/${poemObj._id}`, data) : await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/poem`, data);
 
             setMessage({message: poemObj ? 'update was successful' : 'Poem posted successfully', status: result.statusText});
             poemObj ? result.data : setPoem({
