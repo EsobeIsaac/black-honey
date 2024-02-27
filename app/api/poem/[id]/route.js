@@ -18,15 +18,23 @@ export const PATCH = async(req, {params}) => {
     try{
         await connectDB()
         const data = await req.formData();
+
+        console.log(data, 'data')
+
+        const urlSearchParams = new URLSearchParams(data);
+        console.log(urlSearchParams, 'urlSearchParams')
         
-        const queryObj = Object.fromEntries(new URLSearchParams(data));
+        const queryObj = Object.fromEntries(urlSearchParams);
+        console.log(queryObj, 'queryObj')
+        
+        // const queryObj = Object.fromEntries(new URLSearchParams(data));
         console.log('Reached route')
 
         // return new Response(queryObj, {status: 201, statusText: 'success'});
 
         let imageUrl;
 
-        if(queryObj.image === 'null' || queryObj.image.indexOf('https') === -1) {
+        if(queryObj.image !== 'null' || queryObj.image.indexOf('https') === -1) {
             console.log('Inner IF')
             imageUrl = await cloudinaryUpload.uploader.upload(queryObj.image, {folder: 'blackHoney'}).then(async function(result, err) {
                 if(err) {
