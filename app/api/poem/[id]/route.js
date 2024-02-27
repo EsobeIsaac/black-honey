@@ -24,8 +24,8 @@ export const PATCH = async(req, {params}) => {
         for await (const chunk of req.body) {
             body += chunk;
         }
-        console.log(body)
-        let queryObj = await JSON.parse(body);
+
+        let queryObj = JSON.parse(body);
 
         console.log(queryObj);
 
