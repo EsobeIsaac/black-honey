@@ -28,7 +28,7 @@ export const POST = async(req, res) => {
             imageUrl = process.env.NEXT_PUBLIC_DEFAULT_IMAGE
         }
 
-        let poem = await Poem.create({title: queryObj.title, body: queryObj.body, category: queryObj.category, tags: queryObj.tags.split(','), image: imageUrl})
+        let poem = await Poem.create({title: queryObj.title, body: queryObj.body, category: queryObj.category, tags: queryObj.tags, image: imageUrl})
 
         return new Response(JSON.stringify(poem), {status: 201, statusText: 'success'});
 
